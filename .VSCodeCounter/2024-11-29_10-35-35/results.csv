@@ -1,0 +1,53 @@
+"filename", "language", "XML", "TypeScript JSX", "JSON with Comments", "TypeScript", "JSON", "JavaScript", "CSS", "comment", "blank", "total"
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/.eslintrc.json", "JSON with Comments", 0, 0, 6, 0, 0, 0, 0, 0, 1, 7
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/components.json", "JSON", 0, 0, 0, 0, 21, 0, 0, 0, 0, 21
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/next.config.mjs", "JavaScript", 0, 0, 0, 0, 0, 24, 0, 2, 6, 32
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/package-lock.json", "JSON", 0, 0, 0, 0, 8817, 0, 0, 0, 1, 8818
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/package.json", "JSON", 0, 0, 0, 0, 48, 0, 0, 0, 1, 49
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/postcss.config.mjs", "JavaScript", 0, 0, 0, 0, 0, 6, 0, 1, 2, 9
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/@types/types.d.ts", "TypeScript", 0, 0, 0, 19, 0, 0, 0, 1, 3, 23
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/app/dashboard/(layout)/layout.tsx", "TypeScript JSX", 0, 27, 0, 0, 0, 0, 0, 0, 5, 32
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/app/dashboard/(layout)/resumes/page.tsx", "TypeScript JSX", 0, 9, 0, 0, 0, 0, 0, 0, 2, 11
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/app/dashboard/resumes/[id]/page.tsx", "TypeScript JSX", 0, 4, 0, 0, 0, 0, 0, 0, 2, 6
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/app/layout.tsx", "TypeScript JSX", 0, 48, 0, 0, 0, 0, 0, 0, 5, 53
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/app/page.tsx", "TypeScript JSX", 0, 7, 0, 0, 0, 0, 0, 0, 1, 8
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/assets/afri-cola-studio.svg", "XML", 2, 0, 0, 0, 0, 0, 0, 0, 0, 2
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/pages/dashboard/nav-items.tsx", "TypeScript JSX", 0, 42, 0, 0, 0, 0, 0, 0, 3, 45
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/pages/dashboard/resume/index.tsx", "TypeScript JSX", 0, 48, 0, 0, 0, 0, 0, 0, 6, 54
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/pages/dashboard/resume/infos-sidebar/ai-generation-dropdown.tsx", "TypeScript JSX", 0, 10, 0, 0, 0, 0, 0, 0, 2, 12
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/pages/dashboard/resume/infos-sidebar/index.tsx", "TypeScript JSX", 0, 22, 0, 0, 0, 0, 0, 0, 6, 28
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/pages/dashboard/resume/infos-sidebar/section-title.tsx", "TypeScript JSX", 0, 13, 0, 0, 0, 0, 0, 0, 3, 16
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/pages/dashboard/resume/infos-sidebar/sections/basic-info.tsx", "TypeScript JSX", 0, 28, 0, 0, 0, 0, 0, 0, 5, 33
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/pages/dashboard/resume/infos-sidebar/sections/summary.tsx", "TypeScript JSX", 0, 19, 0, 0, 0, 0, 0, 0, 2, 21
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/pages/dashboard/resume/resume-content/index.tsx", "TypeScript JSX", 0, 5, 0, 0, 0, 0, 0, 0, 1, 6
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/pages/dashboard/resume/structure-sidebar/index.tsx", "TypeScript JSX", 0, 3, 0, 0, 0, 0, 0, 0, 1, 4
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/pages/dashboard/resumes/add-resume-button.tsx", "TypeScript JSX", 0, 11, 0, 0, 0, 0, 0, 0, 2, 13
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/pages/dashboard/resumes/new-resume-dialog.tsx", "TypeScript JSX", 0, 35, 0, 0, 0, 0, 0, 0, 6, 41
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/pages/dashboard/resumes/resume-card.tsx", "TypeScript JSX", 0, 38, 0, 0, 0, 0, 0, 0, 3, 41
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/pages/dashboard/resumes/resumes-list/index.tsx", "TypeScript JSX", 0, 15, 0, 0, 0, 0, 0, 0, 2, 17
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/pages/dashboard/user-dropdown.tsx", "TypeScript JSX", 0, 40, 0, 0, 0, 0, 0, 0, 2, 42
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/shared/theme-provider.tsx", "TypeScript JSX", 0, 9, 0, 0, 0, 0, 0, 0, 3, 12
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/shared/theme-toggle.tsx", "TypeScript JSX", 0, 36, 0, 0, 0, 0, 0, 0, 5, 41
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/avatar.tsx", "TypeScript JSX", 0, 44, 0, 0, 0, 0, 0, 0, 7, 51
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/button.tsx", "TypeScript JSX", 0, 51, 0, 0, 0, 0, 0, 0, 6, 57
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/dialog/index.tsx", "TypeScript JSX", 0, 40, 0, 0, 0, 0, 0, 0, 5, 45
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/dialog/primitive.tsx", "TypeScript JSX", 0, 109, 0, 0, 0, 0, 0, 0, 14, 123
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/dropdown-menu.tsx", "TypeScript JSX", 0, 182, 0, 0, 0, 0, 0, 0, 19, 201
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/editor/index.tsx", "TypeScript JSX", 0, 62, 0, 0, 0, 0, 0, 0, 4, 66
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/editor/menu-bar.tsx", "TypeScript JSX", 0, 100, 0, 0, 0, 0, 0, 0, 7, 107
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/input/field-wrapper.tsx", "TypeScript JSX", 0, 20, 0, 0, 0, 0, 0, 0, 3, 23
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/input/field.tsx", "TypeScript JSX", 0, 36, 0, 0, 0, 0, 0, 0, 3, 39
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/input/input.tsx", "TypeScript JSX", 0, 19, 0, 0, 0, 0, 0, 0, 4, 23
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/label.tsx", "TypeScript JSX", 0, 21, 0, 0, 0, 0, 0, 0, 6, 27
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/resizable.tsx", "TypeScript JSX", 0, 39, 0, 0, 0, 0, 0, 0, 7, 46
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/separator.tsx", "TypeScript JSX", 0, 27, 0, 0, 0, 0, 0, 0, 5, 32
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/switch/field.tsx", "TypeScript JSX", 0, 23, 0, 0, 0, 0, 0, 0, 3, 26
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/switch/index.tsx", "TypeScript JSX", 0, 25, 0, 0, 0, 0, 0, 0, 5, 30
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/tooltip/index.tsx", "TypeScript JSX", 0, 23, 0, 0, 0, 0, 0, 0, 3, 26
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/components/ui/tooltip/primitive.tsx", "TypeScript JSX", 0, 23, 0, 0, 0, 0, 0, 0, 8, 31
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/lib/utils.ts", "TypeScript", 0, 0, 0, 5, 0, 0, 0, 0, 2, 7
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/src/styles/globals.css", "CSS", 0, 0, 0, 0, 0, 0, 69, 0, 4, 73
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/svgr.config.js", "JavaScript", 0, 0, 0, 0, 0, 3, 0, 0, 0, 3
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/tailwind.config.ts", "TypeScript", 0, 0, 0, 68, 0, 0, 0, 0, 2, 70
+"/Users/ubiratanrodrigues/Documents/BIRA/projects/resume-craft/tsconfig.json", "JSON with Comments", 0, 0, 27, 0, 0, 0, 0, 0, 1, 28
+"Total", "-", 2, 1313, 33, 92, 8886, 33, 69, 4, 199, 10631
