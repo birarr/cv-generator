@@ -9,6 +9,7 @@ import {
 } from "@hello-pangea/dnd";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Tooltip } from "@/components/ui/tooltip";
 
 export type ResumeArraysKeys = Exclude<
   keyof ResumeContentData,
@@ -97,14 +98,19 @@ export const MultipleDragList = ({
                             >
                               <GripVertical size={14} />
                             </div>
-                            <div className="flex-1 flex flex-col justify-center px-3 cursor-pointer hover:bg-muted/80 transition-all">
-                              <p className="text-sm font-title font-bold">
-                                {field[titleKey]}
-                              </p>
-                              <p className="text-xs text-muted-foreground">
-                                {field[descriptionKey]}
-                              </p>
-                            </div>
+                            <Tooltip content="Click to edit">
+                              <div
+                                onClick={() => onEdit(index)}
+                                className="flex-1 flex flex-col justify-center px-3 cursor-pointer hover:bg-muted/80 transition-all"
+                              >
+                                <p className="text-sm font-title font-bold">
+                                  {field[titleKey]}
+                                </p>
+                                <p className="text-xs text-muted-foreground">
+                                  {field[descriptionKey]}
+                                </p>
+                              </div>
+                            </Tooltip>
                           </div>
                         )}
                       </Draggable>
@@ -115,6 +121,17 @@ export const MultipleDragList = ({
               )}
             </Droppable>
           </DragDropContext>
+        )}
+
+        {!isEmpty && (
+          <Button
+            variant="outline"
+            className=" w-max gap-2 ml-auto mt-4"
+            onClick={onAdd}
+          >
+            <Plus size={16} />
+            Add item
+          </Button>
         )}
       </div>
     </div>

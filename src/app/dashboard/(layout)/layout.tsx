@@ -3,11 +3,16 @@ import Logo from "@/assets/afri-cola-studio.svg";
 import { NavItems } from "@/components/pages/dashboard/nav-items";
 import { UserDropdown } from "@/components/pages/dashboard/user-dropdown";
 import { ModeToggle } from "@/components/shared/theme-toggle";
+import { auth } from "@/lib/auth";
 type DashboardLayoutProps = {
   children: ReactNode;
 };
 
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
+export default async function DashboardLayout({
+  children,
+}: DashboardLayoutProps) {
+  const session = await auth();
+
   return (
     <div className="w-full h-screen overflow-hidden grid grid-cols-[300px,1fr]">
       <aside className="w-full h-full flex flex-col items-center border-r border-muted">
@@ -18,7 +23,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <NavItems />
 
         <div className="w-full mt-auto border-t border-muted px-3 py-4 flex items-center justify-between gap-2">
-          <UserDropdown />
+          <UserDropdown user={session?.user} />
           <ModeToggle />
         </div>
       </aside>

@@ -29,7 +29,7 @@ export const Dialog = ({
   setOpen,
 }: DialogProps) => {
   return (
-    <DialogRoot>
+    <DialogRoot open={open} onOpenChange={setOpen}>
       {children && <DialogTrigger asChild>{children}</DialogTrigger>}
 
       <DialogContent>

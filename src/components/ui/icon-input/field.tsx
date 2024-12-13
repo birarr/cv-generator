@@ -1,24 +1,23 @@
 "use client";
-import { ComponentProps, ReactNode } from "react";
+import { ComponentProps } from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { Input } from "./input";
-import { FieldWrapper } from "./field-wrapper";
+import { FieldWrapper } from "../input/field-wrapper";
+import { IconInput } from ".";
 
-type InputFieldProps = ComponentProps<typeof Input> & {
+type IconFieldProps = {
   label: string;
   name: string;
   containterClassname?: string;
-  extraContent?: (value: string) => ReactNode;
+  required?: boolean;
 };
 
-export const InputField = ({
+export const IconField = ({
   label,
   name,
   required,
-  extraContent,
   containterClassname,
   ...props
-}: InputFieldProps) => {
+}: IconFieldProps) => {
   const { control } = useFormContext();
   return (
     <Controller
@@ -33,8 +32,7 @@ export const InputField = ({
           className={containterClassname}
           error={fieldState?.error}
         >
-          <Input {...props} {...field} />
-          {extraContent && extraContent(field.value)}
+          <IconInput {...props} {...field} />
         </FieldWrapper>
       )}
     />
