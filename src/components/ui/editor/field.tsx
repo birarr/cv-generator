@@ -1,6 +1,6 @@
 "use client";
 import { ComponentProps } from "react";
-import { Controller, useFormContext } from "react-hook-form";
+import { Control, Controller, useFormContext } from "react-hook-form";
 import { FieldWrapper } from "../input/field-wrapper";
 import { Editor } from ".";
 
@@ -9,6 +9,9 @@ type EditorFieldProps = {
   name: string;
   containterClassname?: string;
   required?: boolean;
+  className?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  control?: Control<any, any>;
 };
 
 export const EditorField = ({
@@ -16,12 +19,13 @@ export const EditorField = ({
   name,
   required,
   containterClassname,
+  control: customControl,
   ...props
 }: EditorFieldProps) => {
   const { control } = useFormContext();
   return (
     <Controller
-      control={control}
+      control={customControl ?? control}
       name={name}
       rules={{
         required: required && "A curriculum must have a title!",

@@ -3,8 +3,7 @@ import localFont from "next/font/local";
 import { Nunito, Nunito_Sans } from "next/font/google";
 import "@/styles/globals.css";
 import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/shared/theme-provider";
-import { Toaster } from "sonner";
+import { ClientProviders } from "@/components/shared/client-providers";
 
 const fontSans = Nunito_Sans({ subsets: ["latin"], variable: "--font-sans" });
 const fontTitle = Nunito({ subsets: ["latin"], variable: "--font-title" });
@@ -39,15 +38,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-          <Toaster />
-        </ThemeProvider>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );

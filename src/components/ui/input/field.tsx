@@ -1,6 +1,6 @@
 "use client";
 import { ComponentProps, ReactNode } from "react";
-import { Controller, useFormContext } from "react-hook-form";
+import { Control, Controller, useFormContext } from "react-hook-form";
 import { Input } from "./input";
 import { FieldWrapper } from "./field-wrapper";
 
@@ -9,6 +9,8 @@ type InputFieldProps = ComponentProps<typeof Input> & {
   name: string;
   containterClassname?: string;
   extraContent?: (value: string) => ReactNode;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  control?: Control<any, any>;
 };
 
 export const InputField = ({
@@ -16,13 +18,14 @@ export const InputField = ({
   name,
   required,
   extraContent,
+  control: customControl,
   containterClassname,
   ...props
 }: InputFieldProps) => {
   const { control } = useFormContext();
   return (
     <Controller
-      control={control}
+      control={customControl ?? control}
       name={name}
       rules={{
         required: required && "A curriculum must have a title!",
