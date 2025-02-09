@@ -3,15 +3,30 @@ import { EditorField } from "@/components/ui/editor/field";
 import { InputField } from "@/components/ui/input/field";
 import { ApiService } from "@/services/api";
 import { useMutation } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
+import { useForm, useFormContext } from "react-hook-form";
+import { toast } from "sonner";
 
 type FormData = {
   jobTitle: string;
   jobDescription: string;
 };
 
-export const GenrateFromJobTitle = () => {
+type GenerationData = {
+  headline: string;
+  summary: string;
+  skills: {
+    name: string;
+    keywords: string;
+  }[];
+};
+
+type GenrateFromJobTitleProps = {
+  onClose: () => void;
+};
+
+export const GenrateFromJobTitle = ({ onClose }: GenrateFromJobTitleProps) => {
   const { control, formState, handleSubmit } = useForm<FormData>();
+  const { setValue } = useFormContext<ResumeData>();
 
   const { mutateAsync: handleGenerate } = useMutation({
     mutationFn: ApiService.generateContentForJob,
@@ -20,7 +35,15 @@ export const GenrateFromJobTitle = () => {
   const onSubmit = async (formData: FormData) => {
     const data = await handleGenerate(formData);
 
-    console.log(data);
+    const generation = JSON.parse(data?.data) as GenerationData;
+
+    setValue("content.infos.headline", generation.headline);
+    setValue("content.summary", generation.summary);
+    setValue("content.skills", generation.skills);
+
+    toast.success("Content succesfully generated!");
+
+    onClose();
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">

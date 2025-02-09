@@ -307,12 +307,11 @@ export const ManageMultipleItemDialog = ({
 
   const formContent = useMemo(() => {
     const config = formConfig[data.formKey];
-    console.log({ config });
 
     return config.map((field, index) => {
       const fieldType = field?.fieldType || "text";
       const isFullWidtth = !!field?.fullWidth;
-      console.log(isFullWidtth);
+
       const inputProps = {
         name: field.key,
         label: field.label,
@@ -322,7 +321,7 @@ export const ManageMultipleItemDialog = ({
         type: field.type,
         className: field.className,
       };
-      console.log({ inputProps });
+
       return (
         <Fragment key={index}>
           {fieldType === "text" && <InputField {...inputProps} />}
@@ -346,8 +345,6 @@ export const ManageMultipleItemDialog = ({
       );
     });
   }, [data.formKey]);
-
-  console.log({ open });
 
   return (
     <Dialog

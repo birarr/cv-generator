@@ -28,7 +28,6 @@ export const LayoutSection = () => {
   });
 
   const onDragEnd = ({ source, destination }: DropResult) => {
-    console.log(source, destination);
     if (!destination) return;
     if (source.droppableId !== destination.droppableId) {
       switch (destination.droppableId) {

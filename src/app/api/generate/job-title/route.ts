@@ -14,7 +14,7 @@ export const POST = async (request: Request) => {
     const { jobTitle, jobDescription } = schema.parse(body);
 
     const completion = await openai.chat.completions.create({
-      model: "chatgpt-4o-latest",
+      model: "gpt-3.5-turbo",
       messages: [
         {
           role: "user",
@@ -45,13 +45,12 @@ export const POST = async (request: Request) => {
       ],
     });
 
-    const json = completion.choices?.[0]?.message?.content ?? "";
-    console.log({ json });
+    const json = completion.choices[0].message.content ?? "";
 
     if (!isValidJSON(json)) throw new Error("Invalid json");
 
     return Response.json({
-      data: completion.choices?.[0]?.message?.content,
+      data: json,
     });
   } catch (error) {
     return Response.json(

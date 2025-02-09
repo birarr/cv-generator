@@ -21,8 +21,6 @@ export const useResumeDownload = (title?: string) => {
       structure,
     });
 
-    console.log({ url });
-
     const link = document.createElement("a");
     link.href = url;
     link.setAttribute("download", `${title ?? "cv"}.pdf`);
