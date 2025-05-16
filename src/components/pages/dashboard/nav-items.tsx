@@ -10,14 +10,14 @@ export const NavItems = () => {
 
   const navItems = [
     {
-      label: "Currículos",
+      label: "Resumes",
       icon: Newspaper,
-      path: "dashboard/resumes",
+      path: "/dashboard/resumes",
     },
     {
       label: "Configurações de conta",
       icon: SquareUser,
-      path: "dashboard/account",
+      path: "/dashboard/account",
     },
   ];
   return (

@@ -17,34 +17,60 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useState } from "react";
 import { GenerationDialog } from "./generation-dialog";
+import { useQuery } from "@tanstack/react-query";
+import { ApiService } from "@/services/api";
+import { Skeleton } from "@/components/ui/skeleton";
+import { BuyCreditsDialog } from "./generation-dialog/buy-credits-dialog";
+import { queryKeys } from "@/constants/queries-keys";
+import { toast } from "sonner";
 
 export const AIGenerationDropdown = () => {
   const [generationMode, setGenerationMode] = useState<AIGenerationMode | null>(
     null
   );
+  const [showCreditsDialog, setShowCreditsDialog] = useState(false);
+
+  const { data: creditsData, isLoading } = useQuery({
+    queryKey: queryKeys.credits,
+    queryFn: ApiService.getCredits,
+  });
+  console.log(creditsData);
+  const onAction = (mode: AIGenerationMode) => {
+    if (!creditsData) {
+      toast.error("You need to buy credits to use this feature.", {
+        action: {
+          label: "Buy credits",
+          onClick: () => setShowCreditsDialog(true),
+        },
+      });
+      return;
+    }
+    setGenerationMode(mode);
+  };
 
   const actions = [
     {
       label: "Buy credits",
       icon: CirclePercent,
-      onClick: () => console.log("Buy credits"),
+      onClick: () => setShowCreditsDialog(true),
     },
     {
       label: "Generate content for job opportunities",
       icon: BriefcaseBusiness,
-      onClick: () => setGenerationMode("JOB_TITLE"),
+      onClick: () => onAction("JOB_TITLE"),
     },
     {
       label: "Update and correct existing content",
       icon: PencilLine,
-      onClick: () => setGenerationMode("FIX_CONTENT"),
+      onClick: () => onAction("FIX_CONTENT"),
     },
     {
       label: "Translate current content",
       icon: Languages,
-      onClick: () => setGenerationMode("TRANSLATE_CONTENT"),
+      onClick: () => onAction("TRANSLATE_CONTENT"),
     },
   ];
+
   return (
     <>
       <DropdownMenu>
@@ -59,7 +85,8 @@ export const AIGenerationDropdown = () => {
             You have{" "}
             <strong className="text-foreground inline-flex gap-0.5 items-center">
               <BadgeCent size={14} />
-              20 credits
+              {isLoading ? <Skeleton className="w-5 h-5" /> : creditsData}{" "}
+              {creditsData === 1 ? "crédito" : "créditos"}
             </strong>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
@@ -68,17 +95,19 @@ export const AIGenerationDropdown = () => {
               key={action.label}
               className="gap-2"
               onClick={action.onClick}
+              disabled={isLoading}
             >
               <action.icon size={18} className="text-muted-foreground" />
               {action.label}
             </DropdownMenuItem>
           ))}
-          {/* <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Billing</DropdownMenuItem>
-        <DropdownMenuItem>Team</DropdownMenuItem>
-        <DropdownMenuItem>Subscription</DropdownMenuItem> */}
         </DropdownMenuContent>
       </DropdownMenu>
+
+      <BuyCreditsDialog
+        open={showCreditsDialog}
+        setOpen={setShowCreditsDialog}
+      />
 
       {!!generationMode && (
         <GenerationDialog

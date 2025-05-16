@@ -7,11 +7,10 @@ import {
   integer,
   uuid,
   json,
-} from "drizzle-orm/pg-core"
+} from "drizzle-orm/pg-core";
 
- 
- // Auth
- 
+// Auth
+
 export const users = pgTable("user", {
   id: text("id")
     .primaryKey()
@@ -20,8 +19,10 @@ export const users = pgTable("user", {
   email: text("email").unique(),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
-})
- 
+  credits: integer("credits").default(0).notNull(),
+  customerId: text("customerId").unique(),
+});
+
 export const accounts = pgTable(
   "account",
   {
@@ -44,16 +45,16 @@ export const accounts = pgTable(
       columns: [account.provider, account.providerAccountId],
     }),
   })
-)
- 
+);
+
 export const sessions = pgTable("session", {
   sessionToken: text("sessionToken").primaryKey(),
   userId: text("userId")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
   expires: timestamp("expires", { mode: "date" }).notNull(),
-})
- 
+});
+
 export const verificationTokens = pgTable(
   "verificationToken",
   {
@@ -66,8 +67,8 @@ export const verificationTokens = pgTable(
       columns: [verificationToken.identifier, verificationToken.token],
     }),
   })
-)
- 
+);
+
 export const authenticators = pgTable(
   "authenticator",
   {
@@ -87,7 +88,7 @@ export const authenticators = pgTable(
       columns: [authenticator.userId, authenticator.credentialID],
     }),
   })
-)
+);
 
 // Platform
 
@@ -95,7 +96,9 @@ export const resumes = pgTable("resumes", {
   id: uuid("id").primaryKey().defaultRandom(),
   title: text("title").notNull(),
   data: json("data").default({}).notNull(),
-  userId: text("user_id").references(() => users.id, { onDelete: "cascade"}).notNull(),
+  userId: text("user_id")
+    .references(() => users.id, { onDelete: "cascade" })
+    .notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().notNull()
-})
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});

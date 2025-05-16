@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ApiService } from "@/services/api";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm, useFormContext } from "react-hook-form";
 import { toast } from "sonner";
 import { mergician } from "mergician";
+import { queryKeys } from "@/constants/queries-keys";
 
 type GenerateToFixContentProps = {
   onClose: () => void;
@@ -12,26 +13,32 @@ type GenerateToFixContentProps = {
 export const GenerateToFixContent = ({
   onClose,
 }: GenerateToFixContentProps) => {
-  const { formState, handleSubmit } = useForm<FormData>();
+  const { handleSubmit } = useForm<FormData>();
   const { setValue, getValues } = useFormContext<ResumeData>();
 
-  const { mutateAsync: handleGenerate } = useMutation({
+  const queryClient = useQueryClient();
+
+  const { mutate: handleGenerate, isPending } = useMutation({
     mutationFn: ApiService.fixContent,
+    onSuccess: (data) => {
+      const content = getValues("content");
+      const generation = JSON.parse(data.data);
+
+      const mergedContent = mergician(content, generation) as ResumeContentData;
+
+      setValue("content", mergedContent);
+
+      toast.success("Content succesfully generated!");
+
+      queryClient.invalidateQueries({ queryKey: queryKeys.credits });
+
+      onClose();
+    },
   });
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     const content = getValues("content");
-    const data = await handleGenerate(content);
-
-    const generation = JSON.parse(data.data);
-
-    const mergedContent = mergician(content, generation) as ResumeContentData;
-
-    setValue("content", mergedContent);
-
-    toast.success("Content succesfully generated!");
-
-    onClose();
+    handleGenerate(content);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
@@ -41,11 +48,7 @@ export const GenerateToFixContent = ({
       </p>
 
       <p>This can take a few seconds, wait the result.</p>
-      <Button
-        className="w-max ml-auto"
-        type="submit"
-        disabled={formState.isSubmitting}
-      >
+      <Button className="w-max ml-auto" type="submit" disabled={isPending}>
         Generate content
       </Button>
     </form>

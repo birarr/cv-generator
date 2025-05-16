@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ApiService } from "@/services/api";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import { toast } from "sonner";
 import {
@@ -13,6 +13,7 @@ import {
 import { languagesOptions } from "../../../structure-sidebar/sections/sections.types";
 import { Item } from "@radix-ui/react-dropdown-menu";
 import { mergician } from "mergician";
+import { queryKeys } from "@/constants/queries-keys";
 
 type FormData = {
   language: ResumeLanguages;
@@ -23,35 +24,46 @@ type GenrateTranslationProps = {
 };
 
 export const GenrateTranslation = ({ onClose }: GenrateTranslationProps) => {
-  const { control, formState, handleSubmit } = useForm<FormData>();
+  const {
+    control,
+    handleSubmit,
+    getValues: getFormValues,
+  } = useForm<FormData>();
   const { setValue, getValues } = useFormContext<ResumeData>();
 
-  const { mutateAsync: handleGenerate } = useMutation({
+  const queryClient = useQueryClient();
+
+  const { mutateAsync: handleGenerate, isPending } = useMutation({
     mutationFn: ApiService.translate,
+    onSuccess: (data) => {
+      const language = getFormValues("language");
+      const content = getValues("content");
+      const generation = JSON.parse(data.data);
+
+      const mergedContent = mergician(content, generation) as ResumeContentData;
+
+      setValue("content", mergedContent);
+      setValue("structure.language", language);
+
+      toast.success("Content succesfully generated!");
+
+      queryClient.invalidateQueries({ queryKey: queryKeys.credits });
+
+      onClose();
+    },
   });
 
-  const onSubmit = async (formData: FormData) => {
+  const onSubmit = (formData: FormData) => {
     const content = getValues("content");
 
     const selectedLanguage = languagesOptions.find(
       (item) => item.value === formData.language
     );
-    const data = await handleGenerate({
+    handleGenerate({
       content,
       // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
       language: selectedLanguage?.label!,
     });
-
-    const generation = JSON.parse(data.data);
-
-    const mergedContent = mergician(content, generation) as ResumeContentData;
-
-    setValue("content", mergedContent);
-    setValue("structure.language", formData.language);
-
-    toast.success("Content succesfully generated!");
-
-    onClose();
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
@@ -77,11 +89,7 @@ export const GenrateTranslation = ({ onClose }: GenrateTranslationProps) => {
         )}
       />
 
-      <Button
-        className="w-max ml-auto"
-        type="submit"
-        disabled={formState.isSubmitting}
-      >
+      <Button className="w-max ml-auto" type="submit" disabled={isPending}>
         Generate content
       </Button>
     </form>

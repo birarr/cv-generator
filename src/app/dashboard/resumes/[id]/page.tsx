@@ -10,7 +10,8 @@ type DashboardResumePageProps = {
 export default async function DashboardResumePage({
   params,
 }: DashboardResumePageProps) {
-  const resumeId = params?.id;
+  const { id } = await params;
+  const resumeId = id;
 
   const resume = await getResumeById(resumeId);
 

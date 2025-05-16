@@ -1,3 +1,5 @@
+import { decrementUserCredits } from "@/db/actions";
+import { getUserCredits } from "@/db/queries";
 import { openai } from "@/lib/openAI";
 import { isValidJSON } from "@/lib/utils";
 import { z } from "zod";
@@ -9,6 +11,19 @@ const schema = z.object({
 
 export const POST = async (request: Request) => {
   try {
+    const credits = await getUserCredits();
+
+    if (credits <= 0) {
+      return Response.json(
+        {
+          message: "You don't have enough credits.",
+        },
+        {
+          status: 402,
+        }
+      );
+    }
+
     const body = await request.json();
 
     const { content, language } = schema.parse(body);
@@ -38,6 +53,8 @@ export const POST = async (request: Request) => {
     const json = completion.choices[0].message.content ?? "";
 
     if (!isValidJSON(json)) throw new Error("Invalid json");
+
+    await decrementUserCredits(1);
 
     return Response.json({
       data: json,
