@@ -1,5 +1,8 @@
 import { formatTailwindHTML } from "@/lib/utils";
-import pupeeter from "puppeteer";
+
+import puppeteer from "puppeteer";
+import puppeteerCore from "puppeteer-core";
+import chromium from "@sparticuz/chromium";
 
 export const POST = async (request: Request) => {
   try {
@@ -9,18 +12,28 @@ export const POST = async (request: Request) => {
 
     if (!html || !structure)
       return Response.json(
-        {
-          message: "Invalid parameter:",
-        },
+        { message: "Parâmetros inválidos" },
         { status: 400 }
       );
 
-    const browser = await pupeeter.launch();
+    let browser = null;
+
+    if (process.env.NODE_ENV === "development") {
+      browser = await puppeteer.launch();
+    } else {
+      browser = await puppeteerCore.launch({
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath(),
+        headless: chromium.headless,
+      });
+    }
 
     const page = await browser.newPage();
 
     await page.setContent(formatTailwindHTML(html, structure));
 
+    // @ts-expect-error
     const bodyHeight = await page.evaluate(() => {
       return document.body.scrollHeight + 20;
     });
@@ -39,12 +52,9 @@ export const POST = async (request: Request) => {
       },
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return Response.json(
-      {
-        message: "Unexpected error:",
-        error,
-      },
+      { message: "Ocorreu um erro inesperado", error },
       { status: 500 }
     );
   }
