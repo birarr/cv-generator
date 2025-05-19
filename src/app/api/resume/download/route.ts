@@ -33,7 +33,7 @@ export const POST = async (request: Request) => {
 
     await page.setContent(formatTailwindHTML(html, structure));
 
-    // @ts-expect-error
+    // @ts-ignore
     const bodyHeight = await page.evaluate(() => {
       return document.body.scrollHeight + 20;
     });
